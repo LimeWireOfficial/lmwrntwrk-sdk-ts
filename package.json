@@ -1,0 +1,23 @@
+{
+  "name": "@limewire/lmwrntwrk-sdk-ts",
+  "version": "0.1.1",
+  "description": "S3-compatible LMWRNTWRK middleware and helpers for AWS SDK v3",
+  "type": "module",
+  "main": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "test": "node --test --experimental-strip-types test/*.test.ts",
+    "typecheck": "tsc -p tsconfig.json",
+    "typecheck:test": "tsc -p tsconfig.test.json",
+    "build:types": "tsc -p tsconfig.build.json"
+  },
+  "dependencies": {
+    "@noble/hashes": "^2.0.1",
+    "@noble/secp256k1": "^2.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0"
+  }
+}
