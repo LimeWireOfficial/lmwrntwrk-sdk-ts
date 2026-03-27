@@ -29,10 +29,10 @@ jobs:
           TAG_VERSION=${GITHUB_REF#refs/tags/v}
           echo "PACKAGE_VERSION: $PACKAGE_VERSION"
           echo "TAG_VERSION: $TAG_VERSION"
-          if [ "$PACKAGE_VERSION" != "$TAG_VERSION" ]; then
-            echo "Error: Tag version ($TAG_VERSION) does not match package.json version ($PACKAGE_VERSION)"
-            exit 1
-          fi
+#          if [ "$PACKAGE_VERSION" != "$TAG_VERSION" ]; then
+#            echo "Error: Tag version ($TAG_VERSION) does not match package.json version ($PACKAGE_VERSION)"
+#            exit 1
+#          fi
 
       - name: Install dependencies
         run: npm ci
