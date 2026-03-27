@@ -41,8 +41,8 @@ jobs:
 #      - name: Typecheck
 #        run: npm run typecheck
 
-      - name: Build types
-        run: npm run build:types
+#      - name: Build types
+#        run: npm run build:types
 
       - name: Publish to NPM
         run: npm publish --access public --provenance
