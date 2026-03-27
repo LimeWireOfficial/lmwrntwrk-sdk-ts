@@ -75,12 +75,12 @@ export function applyLmwrntwrkMiddleware(
         const shouldRecordRequestBody =
           action === "s3:CompleteMultipartUpload" ||
           action === "s3:PutObjectTagging";
-        let requestBodyForPayload = new Uint8Array(0);
+        let requestBodyForPayload = new Uint8Array(0) as Uint8Array;
         let footerData;
 
         if (body) {
           if (shouldRecordRequestBody) {
-            requestBodyForPayload = body;
+            requestBodyForPayload = body as Uint8Array;
           }
           footerData = await applyFooterToRequest(
             request,

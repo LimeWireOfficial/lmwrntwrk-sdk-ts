@@ -58,12 +58,12 @@ export function randomBytes(size: number): Uint8Array {
 }
 
 export async function sha256(data: Uint8Array): Promise<Uint8Array> {
-  const digest = await getCrypto().subtle.digest('SHA-256', data);
+  const digest = await getCrypto().subtle.digest('SHA-256', data as any);
   return new Uint8Array(digest);
 }
 
 export async function sha1(data: Uint8Array): Promise<Uint8Array> {
-  const digest = await getCrypto().subtle.digest('SHA-1', data);
+  const digest = await getCrypto().subtle.digest('SHA-1', data as any);
   return new Uint8Array(digest);
 }
 

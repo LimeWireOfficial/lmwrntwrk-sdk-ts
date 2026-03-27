@@ -77,7 +77,6 @@ export async function generateValidatorPayload(
   const payload: StoreEventRequestJson = {
     storageProviderS3Signature: spSignature,
     storageProviderPayload: responseHeaders['x-lmwrntwrk-sp-payload'] ?? '',
-    footer: footerObject,
     request: {
       body: utf8Decode(requestBody),
       headers: requestHeaders,
@@ -89,6 +88,10 @@ export async function generateValidatorPayload(
       headers: responseHeaders,
     },
   };
+
+  if (footerObject) {
+    payload.footer = footerObject;
+  }
 
   return JSON.stringify(payload);
 }

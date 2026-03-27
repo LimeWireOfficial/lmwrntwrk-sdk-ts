@@ -33,7 +33,11 @@ function readTlv(input: Uint8Array, offset: number): Tlv {
       throw new Error('invalid DER: length overflow');
     }
     for (let i = 0; i < n; i += 1) {
-      length = (length << 8) | input[offset + 2 + i];
+      const val = input[offset + 2 + i];
+      if (val === undefined) {
+        throw new Error('invalid DER: unexpected end');
+      }
+      length = (length << 8) | val;
     }
     headerLength = 2 + n;
   }
@@ -44,7 +48,7 @@ function readTlv(input: Uint8Array, offset: number): Tlv {
     throw new Error('invalid DER: value exceeds input');
   }
 
-  return { tag, start, end, next: end };
+  return { tag: tag!, start, end, next: end };
 }
 
 function leftPad32(input: Uint8Array): Uint8Array {
@@ -114,8 +118,8 @@ function parsePemBlock(pem: string): { label: string; der: Uint8Array } {
     throw new Error('invalid PEM');
   }
 
-  const label = match[1];
-  const b64 = match[2].replace(/\s+/g, '');
+  const label = match[1]!;
+  const b64 = match[2]!.replace(/\s+/g, '');
   return {
     label,
     der: fromBase64(b64),
@@ -162,10 +166,7 @@ export class ECDSASigner {
 
   async signBytesCompact(data: Uint8Array): Promise<Uint8Array> {
     const hash = await sha256(data);
-    const signature = await secp256k1.signAsync(hash, this.privateKey, {
-      prehash: false,
-      extraEntropy: false,
-    });
+    const signature = await secp256k1.signAsync(hash, this.privateKey);
 
     if (signature.recovery === undefined) {
       throw new Error('missing recovery id in signature');
