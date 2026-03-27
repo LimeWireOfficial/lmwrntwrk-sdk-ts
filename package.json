@@ -1,17 +1,17 @@
 {
   "name": "@limewire/lmwrntwrk-sdk-ts",
-  "version": "0.1.1-rc.1",
+  "version": "0.1.1-rc.2",
   "description": "S3-compatible LMWRNTWRK middleware and helpers for AWS SDK v3",
   "author": "LimeWire Network (https://limewire.network)",
-  "license": "MIT",
+  "license": "LGPL-2.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/LimeWireOfficial/lmwrntwrk-sdk-ts"
   },
   "bugs": {
-    "url": "https://github.com/username/repo-name/issues"
+    "url": "https://github.com/LimeWireOfficial/lmwrntwrk-sdk-ts/issues"
   },
-  "homepage": "https://github.com/username/repo-name#readme",
+  "homepage": "https://github.com/LimeWireOfficial/lmwrntwrk-sdk-ts#readme",
   "publishConfig": {
     "access": "public"
   },
