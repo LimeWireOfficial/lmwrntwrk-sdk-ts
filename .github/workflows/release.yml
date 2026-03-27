@@ -7,6 +7,10 @@ on:
     tags:
       - 'v*'
 
+permissions:
+  id-token: write  # Required for OIDC
+  contents: read
+
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -23,10 +27,13 @@ jobs:
           node-version: 22
           registry-url: 'https://registry.npmjs.org'
 
-#      - name: Verify tag matches version
-#        run: |
-#          PACKAGE_VERSION=$(node -p "require('./package.json').version")
-#          TAG_VERSION=${GITHUB_REF#refs/tags/v}
+      - name: Verify tag matches version
+        run: |
+          PACKAGE_VERSION=$(node -p "require('./package.json').version")
+          TAG_VERSION=${GITHUB_REF#refs/tags/v}
+          # print values
+          echo "PACKAGE_VERSION: $PACKAGE_VERSION"
+          echo "TAG_VERSION: $TAG_VERSION"
 #          if [ "$PACKAGE_VERSION" != "$TAG_VERSION" ]; then
 #            echo "Error: Tag version ($TAG_VERSION) does not match package.json version ($PACKAGE_VERSION)"
 #            exit 1
@@ -38,13 +45,13 @@ jobs:
       - name: Run tests
         run: npm test
 
-#      - name: Typecheck
-#        run: npm run typecheck
+      - name: Typecheck
+        run: npm run typecheck
 
-#      - name: Build types
-#        run: npm run build:types
+      - name: Build types
+        run: npm run build:types
 
       - name: Publish to NPM
         run: npm publish --access public --provenance
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+#        env:
+#          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
