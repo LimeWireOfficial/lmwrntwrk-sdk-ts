@@ -6,7 +6,7 @@
   "license": "LGPL-2.1",
   "repository": {
     "type": "git",
-    "url": "https://github.com/LimeWireOfficial/lmwrntwrk-sdk-ts"
+    "url": "git+https://github.com/LimeWireOfficial/lmwrntwrk-sdk-ts.git"
   },
   "bugs": {
     "url": "https://github.com/LimeWireOfficial/lmwrntwrk-sdk-ts/issues"
