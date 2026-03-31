@@ -1,0 +1,47 @@
+{
+  "name": "@limewire/lmwrntwrk-sdk-ts",
+  "version": "0.1.1",
+  "description": "S3-compatible LMWRNTWRK middleware and helpers for AWS SDK v3",
+  "author": "LimeWire Network (https://limewire.network)",
+  "license": "LGPL-2.1",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LimeWireOfficial/lmwrntwrk-sdk-ts.git"
+  },
+  "bugs": {
+    "url": "https://github.com/LimeWireOfficial/lmwrntwrk-sdk-ts/issues"
+  },
+  "homepage": "https://github.com/LimeWireOfficial/lmwrntwrk-sdk-ts#readme",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "types": "./dist/types/index.d.ts"
+  },
+  "files": [
+    "src",
+    "dist/types",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "test": "node --test --experimental-strip-types test/*.test.ts",
+    "typecheck": "tsc -p tsconfig.json",
+    "typecheck:test": "tsc -p tsconfig.test.json",
+    "build:types": "tsc -p tsconfig.build.json"
+  },
+  "dependencies": {
+    "@noble/hashes": "^2.0.1",
+    "@noble/secp256k1": "^2.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "typescript": "^5.9.3"
+  }
+}
