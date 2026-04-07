@@ -17,11 +17,14 @@
     "registry": "https://registry.npmjs.org/"
   },
   "type": "module",
-  "main": "./src/index.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
   "types": "./dist/types/index.d.ts",
   "exports": {
-    ".": "./src/index.ts",
-    "types": "./dist/types/index.d.ts"
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./src/index.js"
+    }
   },
   "files": [
     "src",
@@ -31,17 +34,19 @@
     "CHANGELOG.md"
   ],
   "scripts": {
-    "test": "node --test --experimental-strip-types test/*.test.ts",
+    "test": "tsx --test test/*.test.ts",
     "typecheck": "tsc -p tsconfig.json",
-    "typecheck:test": "tsc -p tsconfig.test.json",
-    "build:types": "tsc -p tsconfig.build.json"
+    "build:types": "tsc -p tsconfig.build.json",
+    "build:js": "tsc -p tsconfig.build.json --emitDeclarationOnly false --noEmit false --outDir ./dist",
+    "build": "rm -rf dist && npm run build:types && npm run build:js"
   },
   "dependencies": {
     "@noble/hashes": "^2.0.1",
     "@noble/secp256k1": "^2.3.0"
   },
   "devDependencies": {
-    "@types/node": "^25.5.0",
+    "@types/node": "^25.5.2",
+    "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   }
 }

@@ -1,6 +1,6 @@
-import { readBodyToBytes } from './body.ts';
-import { toBase64, utf8Decode } from './bytes.ts';
-import type { FooterData, HttpLikeRequest, HttpLikeResponse, StoreEventRequestJson } from './types.ts';
+import { readBodyToBytes } from './body.js';
+import { toBase64, utf8Decode } from './bytes.js';
+import type { FooterData, HttpLikeRequest, HttpLikeResponse, StoreEventRequestJson } from './types.js';
 
 export function headersToLowercaseMap(headers: Record<string, string | string[] | undefined> | undefined): Record<string, string> {
   const out: Record<string, string> = {};

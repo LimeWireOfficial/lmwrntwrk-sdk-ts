@@ -1,20 +1,20 @@
-import { isActionAllowed, getS3ActionFromRequest } from "./allowlist.ts";
-import { readBodyToBytes } from "./body.ts";
-import { signerFromConfig } from "./crypto.ts";
+import { readBodyToBytes } from "./body.js";
+import { signerFromConfig } from "./crypto.js";
 import {
   DefaultChunkSize,
   RequestIdHeader,
   SignatureHeader,
-} from "./constants.ts";
-import { applyFooterToRequest } from "./footer.ts";
-import { generateUlid } from "./ulid.ts";
-import { generateValidatorPayload, sendDataToValidator } from "./validator.ts";
+} from "./constants.js";
+import { applyFooterToRequest } from "./footer.js";
+import { generateUlid } from "./ulid.js";
+import { generateValidatorPayload, sendDataToValidator } from "./validator.js";
 import type {
   LmwrntwrkConfig,
   MiddlewareArgs,
   MiddlewareClient,
   MiddlewareResult,
 } from "./types.ts";
+import { getS3ActionFromRequest, isActionAllowed } from "./allowlist.js";
 
 function getHeader(
   headers: Record<string, string | undefined>,

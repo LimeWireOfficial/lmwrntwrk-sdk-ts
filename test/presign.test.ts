@@ -2,13 +2,13 @@ import { createHash } from "node:crypto";
 import test from "node:test";
 import assert from "node:assert/strict";
 import * as secp256k1 from "@noble/secp256k1";
-import { utf8Encode } from "../src/bytes.ts";
+import { utf8Encode } from "../src/bytes.js";
 import {
   addLmwrntwrkParamsToPresignedUrl,
   extractPresignedParams,
   removeLmwrntwrkQueryParamsFromUrl,
-} from "../src/index.ts";
-import { buildTestPrivateKeyPemBase64 } from "./test-helpers.ts";
+} from "../src/index.js";
+import { buildTestPrivateKeyPemBase64 } from "./test-helpers.js";
 
 function makePresignedUrl(sig: string): string {
   const u = new URL("https://s3.example.com/bucket/key");

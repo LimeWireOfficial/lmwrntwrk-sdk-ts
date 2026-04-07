@@ -1,7 +1,7 @@
-import { AwsSignatureQueryParam, MaxAllowedPresignedRequestDurationSeconds, QueryParamMaxRequestCount, QueryParamRequestID, QueryParamSignature } from './constants.ts';
-import { signerFromConfig } from './crypto.ts';
-import { generateUlid } from './ulid.ts';
-import type { LmwrntwrkConfig } from './types.ts';
+import { AwsSignatureQueryParam, MaxAllowedPresignedRequestDurationSeconds, QueryParamMaxRequestCount, QueryParamRequestID, QueryParamSignature } from './constants.js';
+import { signerFromConfig } from './crypto.js';
+import type { LmwrntwrkConfig } from './types.js';
+import { generateUlid } from './ulid.js';
 
 export interface LmwrntwrkPresignInfo {
   requestId: string;

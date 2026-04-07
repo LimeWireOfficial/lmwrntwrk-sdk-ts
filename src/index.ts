@@ -1,14 +1,14 @@
-export { applyLmwrntwrkMiddleware } from "./middleware.ts";
+export { applyLmwrntwrkMiddleware } from "./middleware.js";
 export {
   addLmwrntwrkParamsToPresignedUrl,
   extractPresignedParams,
   removeLmwrntwrkQueryParamsFromUrl,
-} from "./presign.ts";
+} from "./presign.js";
 export {
   ECDSASigner,
   signerFromConfig,
   getPrivateKeyPemFromConfig,
-} from "./crypto.ts";
+} from "./crypto.js";
 export {
   generateAccessKey,
   generateSecretKey,
@@ -17,10 +17,10 @@ export {
   generateSecretKeyFromPublicKeyBytes,
   addressFromUncompressed,
   base58Encode,
-} from "./keys.ts";
-export { generateUlid } from "./ulid.ts";
-export * from "./constants.ts";
-export * from "./types.ts";
+} from "./keys.js";
+export { generateUlid } from "./ulid.js";
+export * from "./constants.js";
+export * from "./types.js";
 
 export function staticValidatorUrlResolver(...urls: string[]) {
   if (urls.length === 0) {

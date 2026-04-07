@@ -1,6 +1,6 @@
-import type { LmwrntwrkConfig } from './types.ts';
-import { signerFromConfig } from './crypto.ts';
-import { sha1 } from './bytes.ts';
+import type { LmwrntwrkConfig } from './types.js';
+import { signerFromConfig } from './crypto.js';
+import { sha1 } from './bytes.js';
 import { keccak_256 } from '@noble/hashes/sha3.js';
 
 const BASE58_ALPHABET = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz';

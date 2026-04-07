@@ -1,7 +1,7 @@
-import { ChunkSizeHeader, DefaultChunkSize, FooterLengthHeader, FooterLength, FooterVersion, MagicBytes } from './constants.ts';
-import type { FooterData, HashWithLength } from './types.ts';
-import { ECDSASigner } from './crypto.ts';
-import { concatBytes, sha256, uint64ToBigEndian } from './bytes.ts';
+import { ChunkSizeHeader, DefaultChunkSize, FooterLengthHeader, FooterLength, FooterVersion, MagicBytes } from './constants.js';
+import type { FooterData, HashWithLength } from './types.js';
+import { ECDSASigner } from './crypto.js';
+import { concatBytes, sha256, uint64ToBigEndian } from './bytes.js';
 
 export async function createFooterData(body: Uint8Array, signer: ECDSASigner, chunkSize = DefaultChunkSize): Promise<FooterData> {
   const hashes: HashWithLength[] = [];

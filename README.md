@@ -24,7 +24,7 @@ const s3 = new S3Client({ region: 'us-east-1' });
 
 applyLmwrntwrkMiddleware(s3, {
   privateKey: '<private-key-in-pem-or-raw-hex>',
-  validatorUrlResolver: staticValidatorUrlResolver('https://v1.limewire.network', 'https://v2.limewire.network', 'https://v3.limewire.network'),
+  validatorUrlResolver: staticValidatorUrlResolver('https://v1.limewire.network/events', 'https://v2.limewire.network/events', 'https://v3.limewire.network/events'),
 });
 ```
 

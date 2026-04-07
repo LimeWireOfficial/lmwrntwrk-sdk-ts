@@ -1,6 +1,6 @@
 import * as secp256k1 from '@noble/secp256k1';
-import type { LmwrntwrkConfig } from './types.ts';
-import { concatBytes, fromBase64, sha256, toBase64, utf8Encode } from './bytes.ts';
+import type { LmwrntwrkConfig } from './types.js';
+import { concatBytes, fromBase64, sha256, toBase64, utf8Encode } from './bytes.js';
 import { hexToBytes } from '@noble/hashes/utils.js';
 
 interface Tlv {

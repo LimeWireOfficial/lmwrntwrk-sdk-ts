@@ -1,4 +1,4 @@
-import { randomBytes } from './bytes.ts';
+import { randomBytes } from './bytes.js';
 
 const CROCKFORD = '0123456789ABCDEFGHJKMNPQRSTVWXYZ';
 

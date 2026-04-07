@@ -1,9 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { applyLmwrntwrkMiddleware } from '../src/middleware.ts';
-import { utf8Encode } from '../src/bytes.ts';
-import type { MiddlewareArgs, MiddlewareResult } from '../src/types.ts';
-import { buildTestPrivateKeyPemBase64 } from './test-helpers.ts';
+import { applyLmwrntwrkMiddleware } from '../src/middleware.js';
+import { utf8Encode } from '../src/bytes.js';
+import type { MiddlewareArgs, MiddlewareResult } from '../src/types';
+import { buildTestPrivateKeyPemBase64 } from './test-helpers.js';
 
 function buildClient() {
   let middleware: ((next: (args: MiddlewareArgs) => Promise<MiddlewareResult>) => (args: MiddlewareArgs) => Promise<MiddlewareResult>) | undefined;

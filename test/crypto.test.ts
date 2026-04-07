@@ -2,9 +2,9 @@ import { createHash } from "node:crypto";
 import test from "node:test";
 import assert from "node:assert/strict";
 import * as secp256k1 from "@noble/secp256k1";
-import { ECDSASigner } from "../src/crypto.ts";
-import { fromBase64, utf8Encode } from "../src/bytes.ts";
-import { buildTestPrivateKeyPemBase64 } from "./test-helpers.ts";
+import { ECDSASigner } from "../src/crypto.js";
+import { fromBase64, utf8Encode } from "../src/bytes.js";
+import { buildTestPrivateKeyPemBase64 } from "./test-helpers.js";
 
 test("ECDSASigner emits compact recoverable signature compatible with secp256k1 recovery", async () => {
   const pem = buildTestPrivateKeyPemBase64();

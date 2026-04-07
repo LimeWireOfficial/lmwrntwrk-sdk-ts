@@ -6,7 +6,7 @@ import {
   generateAccessKey,
   generateAccessKeyFromPublicKeyBytes,
   generateSecretKey,
-} from "../src/index.ts";
+} from "../src/index.js";
 
 test("base58Encode", () => {
   const out = base58Encode(new TextEncoder().encode("lmwrntwrk"));
