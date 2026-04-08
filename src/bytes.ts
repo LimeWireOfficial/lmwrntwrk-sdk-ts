@@ -21,9 +21,12 @@ export function concatBytes(parts: Uint8Array[]): Uint8Array {
 }
 
 export function toBase64(bytes: Uint8Array): string {
-  if (typeof Buffer !== 'undefined') {
-    return Buffer.from(bytes).toString('base64');
+const G = globalThis as any;
+  if (typeof G.Buffer !== 'undefined') {
+    return G.Buffer.from(bytes).toString('base64');
   }
+  
+  // Browser fallback
   let binary = '';
   for (const b of bytes) {
     binary += String.fromCharCode(b);
@@ -32,9 +35,11 @@ export function toBase64(bytes: Uint8Array): string {
 }
 
 export function fromBase64(base64: string): Uint8Array {
-  if (typeof Buffer !== 'undefined') {
-    return new Uint8Array(Buffer.from(base64, 'base64'));
+const G = globalThis as any;
+  if (typeof G.Buffer !== 'undefined') {
+    return new Uint8Array(G.Buffer.from(base64, 'base64'));
   }
+
   const binary = atob(base64);
   const out = new Uint8Array(binary.length);
   for (let i = 0; i < binary.length; i += 1) {
