@@ -13,3 +13,5 @@ export const FooterVersion = 1;
 export const FooterLength = 109;
 export const DefaultChunkSize = 10 * 1024 * 1024;
 export const MaxAllowedPresignedRequestDurationSeconds = 4 * 60 * 60;
+
+export const DefaultGraphEndpoint = "https://graph.limewire.network/subgraphs/name/limewire-network";

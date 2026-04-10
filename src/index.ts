@@ -21,6 +21,8 @@ export {
 export { generateUlid } from "./ulid.js";
 export * from "./constants.js";
 export * from "./types.js";
+export * from "./graph.js";
+export * from "./resolver.js";
 
 export function staticValidatorUrlResolver(...urls: string[]) {
   if (urls.length === 0) {

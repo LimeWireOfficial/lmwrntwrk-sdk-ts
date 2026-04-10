@@ -13,8 +13,21 @@ import type {
   MiddlewareArgs,
   MiddlewareClient,
   MiddlewareResult,
+  ValidatorUrlResolver,
 } from "./types.ts";
 import { getS3ActionFromRequest, isActionAllowed } from "./allowlist.js";
+import { GraphQLClient } from "./graph.js";
+import { newCachingValidatorResolver } from "./resolver.js";
+
+let defaultValidatorUrlResolver: ValidatorUrlResolver | undefined;
+
+function getDefaultValidatorUrlResolver(): ValidatorUrlResolver {
+  if (!defaultValidatorUrlResolver) {
+    const client = new GraphQLClient();
+    defaultValidatorUrlResolver = newCachingValidatorResolver(client);
+  }
+  return defaultValidatorUrlResolver;
+}
 
 function getHeader(
   headers: Record<string, string | undefined>,
@@ -108,11 +121,10 @@ export function applyLmwrntwrkMiddleware(
           return result;
         }
 
-        if (!config.validatorUrlResolver) {
-          return result;
-        }
+        const resolver =
+          config.validatorUrlResolver ?? getDefaultValidatorUrlResolver();
 
-        const validatorUrl = await config.validatorUrlResolver();
+        const validatorUrl = await resolver();
         if (!validatorUrl) {
           return result;
         }

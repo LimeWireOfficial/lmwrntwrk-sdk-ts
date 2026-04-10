@@ -78,5 +78,3 @@ test("generateAccessKeyFromPublicKeyBytes returns at most 20 chars", () => {
   );
   assert.ok(key.length <= 20);
 });
-
-test("xxx", () => {});
