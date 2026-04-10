@@ -4,16 +4,14 @@ import { GraphQLClient } from '../src/graph.js';
 import { newCachingValidatorResolver } from '../src/resolver.js';
 
 test('GraphQLClient fetches validator endpoints', async (t) => {
-  const mockEndpoints = ['http://validator1.local', 'http://validator2.local'];
-  
-  // Mock global fetch
+
   const originalFetch = global.fetch;
   global.fetch = async (url, init) => {
     return {
       ok: true,
       json: async () => ({
         data: {
-          validators: mockEndpoints.map(url => ({ endpointUrl: url }))
+          validators: ['http://validator1.local', 'http://validator2.local'].map(url => ({ endpointUrl: url }))
         }
       })
     } as any;
@@ -23,7 +21,7 @@ test('GraphQLClient fetches validator endpoints', async (t) => {
     const client = new GraphQLClient('http://mock-graph.local');
     const endpoints = await client.listEnabledValidatorEndpoints();
     
-    assert.deepEqual(endpoints, mockEndpoints);
+    assert.deepEqual(endpoints, ['http://validator1.local/events', 'http://validator2.local/events']);
   } finally {
     global.fetch = originalFetch;
   }

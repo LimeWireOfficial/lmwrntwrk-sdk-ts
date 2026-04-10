@@ -72,6 +72,6 @@ export class GraphQLClient {
       throw new Error("no active validator found");
     }
 
-    return result.validators.map((v) => v.endpointUrl);
+    return result.validators.map((v) => v.endpointUrl + "/events");
   }
 }
