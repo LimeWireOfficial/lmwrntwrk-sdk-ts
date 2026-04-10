@@ -1,6 +1,6 @@
 {
   "name": "@limewire/lmwrntwrk-sdk-ts",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "S3-compatible LMWRNTWRK middleware and helpers for AWS SDK v3",
   "author": "LimeWire Network (https://limewire.network)",
   "license": "LGPL-2.1",
