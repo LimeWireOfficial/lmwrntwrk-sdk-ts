@@ -1,4 +1,4 @@
-import { DefaultGraphEndpoint } from "./constants.js";
+import { DefaultGraphEndpoint, LmwrntwrkUserAgent } from "./constants.js";
 
 export interface GraphQLRequest {
   query: string;
@@ -31,6 +31,7 @@ export class GraphQLClient {
 
     const headers: Record<string, string> = {
       "Content-Type": "application/json",
+      "User-Agent": LmwrntwrkUserAgent,
     };
 
     if (this.bearer) {

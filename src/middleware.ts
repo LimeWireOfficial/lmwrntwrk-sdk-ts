@@ -2,6 +2,7 @@ import { readBodyToBytes } from "./body.js";
 import { signerFromConfig } from "./crypto.js";
 import {
   DefaultChunkSize,
+  LmwrntwrkUserAgent,
   RequestIdHeader,
   SignatureHeader,
 } from "./constants.js";
@@ -78,6 +79,11 @@ export function applyLmwrntwrkMiddleware(
 
         request.headers[RequestIdHeader] = requestId;
         request.headers[SignatureHeader] = signature;
+
+        const existingUserAgent = getHeader(request.headers, "user-agent");
+        request.headers["User-Agent"] = existingUserAgent
+          ? `${existingUserAgent} ${LmwrntwrkUserAgent}`
+          : LmwrntwrkUserAgent;
 
         const chunkSize =
           config.chunkSize && config.chunkSize > 0

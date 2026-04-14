@@ -1,5 +1,6 @@
 import { readBodyToBytes } from './body.js';
 import { toBase64, utf8Decode } from './bytes.js';
+import { LmwrntwrkUserAgent } from './constants.js';
 import type { FooterData, HttpLikeRequest, HttpLikeResponse, StoreEventRequestJson } from './types.js';
 
 export function headersToLowercaseMap(headers: Record<string, string | string[] | undefined> | undefined): Record<string, string> {
@@ -105,6 +106,7 @@ export async function sendDataToValidator(
     method: 'POST',
     headers: {
       'content-type': 'application/json',
+      'User-Agent': LmwrntwrkUserAgent,
     },
     body: payloadJson,
   });

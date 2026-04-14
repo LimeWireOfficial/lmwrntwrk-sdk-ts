@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { applyLmwrntwrkMiddleware } from '../src/middleware.js';
 import { utf8Encode } from '../src/bytes.js';
+import { LmwrntwrkUserAgent } from '../src/constants.js';
 import type { MiddlewareArgs, MiddlewareResult } from '../src/types';
 import { buildTestPrivateKeyPemBase64 } from './test-helpers.js';
 
@@ -26,7 +27,7 @@ function buildClient() {
 }
 
 test('middleware signs request, appends footer, and sends validator event', async () => {
-  const capture: { url?: string; body?: string } = {};
+  const capture: { url?: string; body?: string; headers?: Record<string, string> } = {};
 
   const { client, getMiddleware } = buildClient();
   applyLmwrntwrkMiddleware(client, {
@@ -36,6 +37,7 @@ test('middleware signs request, appends footer, and sends validator event', asyn
     fetchImpl: async (url, init) => {
       capture.url = url;
       capture.body = init.body;
+      capture.headers = init.headers;
       return {};
     },
   });
@@ -47,6 +49,7 @@ test('middleware signs request, appends footer, and sends validator event', asyn
     const request = args.request;
     assert.ok(request.headers['x-lmwrntwrk-request-id']);
     assert.ok(request.headers['x-lmwrntwrk-signature']);
+    assert.equal(request.headers['User-Agent'], `ExistingUserAgent ${LmwrntwrkUserAgent}`);
     assert.equal(request.headers['x-lmwrntwrk-footer-length'], '109');
     assert.equal(request.headers['x-lmwrntwrk-chunk-size'], '8');
     assert.equal((request.body as Uint8Array).length, 5 + 109);
@@ -72,6 +75,7 @@ test('middleware signs request, appends footer, and sends validator event', asyn
       headers: {
         authorization: 'AWS4-HMAC-SHA256 credential=abc',
         host: 's3.example.com',
+        'user-agent': 'ExistingUserAgent',
       },
       body: utf8Encode('hello'),
     },
@@ -79,6 +83,7 @@ test('middleware signs request, appends footer, and sends validator event', asyn
 
   assert.equal(capture.url, 'https://validator.local/events');
   assert.ok(capture.body);
+  assert.equal(capture.headers?.['User-Agent'], LmwrntwrkUserAgent);
 
   const payload = JSON.parse(capture.body ?? '{}');
   assert.equal(payload.storageProviderS3Signature, 'sp-sig');
