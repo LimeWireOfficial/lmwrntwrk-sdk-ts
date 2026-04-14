@@ -1,3 +1,11 @@
+# Release (v0.1.6)
+- feat: event whitelist to send to validator nodes from the SDK
+- feat: augment "user-agent" header with sdk version
+
+# Release (v0.1.5)
+- fix: append '/events' to remotely fetched validator endpoint urls
+- fix: update constants to use latest values
+
 # Release (v0.1.4)
 - chore: improve docs
 - feat: validator resolver using theGraph and default graph url for limewire network
