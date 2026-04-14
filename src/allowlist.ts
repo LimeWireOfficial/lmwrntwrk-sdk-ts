@@ -48,6 +48,26 @@ export function isActionAllowed(action: string): boolean {
   return ACTIONS.has(action);
 }
 
+const VALIDATOR_ACTIONS = new Set<string>([
+  's3:AbortMultipartUpload',
+  's3:CompleteMultipartUpload',
+  's3:CopyObject',
+  's3:CreateMultipartUpload',
+  's3:DeleteObject',
+  's3:DeleteObjects',
+  's3:DeleteObjectTagging',
+  's3:GetObject',
+  's3:PutBucketTagging',
+  's3:PutObject',
+  's3:PutObjectTagging',
+  's3:UploadPart',
+  's3:UploadPartCopy',
+]);
+
+export function isValidatorActionAllowed(action: string): boolean {
+  return VALIDATOR_ACTIONS.has(action);
+}
+
 export function getS3ActionFromRequest(request: {
   method: string;
   path: string;

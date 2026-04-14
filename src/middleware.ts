@@ -16,7 +16,11 @@ import type {
   MiddlewareResult,
   ValidatorUrlResolver,
 } from "./types.ts";
-import { getS3ActionFromRequest, isActionAllowed } from "./allowlist.js";
+import {
+  getS3ActionFromRequest,
+  isActionAllowed,
+  isValidatorActionAllowed,
+} from "./allowlist.js";
 import { GraphQLClient } from "./graph.js";
 import { newCachingValidatorResolver } from "./resolver.js";
 
@@ -111,7 +115,7 @@ export function applyLmwrntwrkMiddleware(
 
         const result = await next(args);
 
-        if (!result.response) {
+        if (!result.response || !isValidatorActionAllowed(action)) {
           return result;
         }
 
