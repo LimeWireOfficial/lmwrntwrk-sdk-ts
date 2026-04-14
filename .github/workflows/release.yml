@@ -25,11 +25,20 @@ jobs:
       - name: Verify tag matches version
         run: |
           PACKAGE_VERSION=$(node -p "require('./package.json').version")
+          SRC_VERSION=$(grep "export const version =" src/version.ts | cut -d "'" -f 2)
           TAG_VERSION=${GITHUB_REF#refs/tags/v}
+          
           echo "PACKAGE_VERSION: $PACKAGE_VERSION"
+          echo "SRC_VERSION: $SRC_VERSION"
           echo "TAG_VERSION: $TAG_VERSION"
+          
           if [ "$PACKAGE_VERSION" != "$TAG_VERSION" ]; then
             echo "Error: Tag version ($TAG_VERSION) does not match package.json version ($PACKAGE_VERSION)"
+            exit 1
+          fi
+          
+          if [ "$SRC_VERSION" != "$TAG_VERSION" ]; then
+            echo "Error: Tag version ($TAG_VERSION) does not match src/version.ts version ($SRC_VERSION)"
             exit 1
           fi
 
@@ -42,8 +51,8 @@ jobs:
       - name: Typecheck
         run: npm run typecheck
 
-      - name: Build types
-        run: npm run build:types
+      - name: Build
+        run: npm run build
 
       - name: Publish to NPM
         run: npm publish --access public --provenance

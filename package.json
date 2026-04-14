@@ -1,6 +1,6 @@
 {
   "name": "@limewire/lmwrntwrk-sdk-ts",
-  "version": "0.1.6",
+  "version": "0.1.5",
   "description": "S3-compatible LMWRNTWRK middleware and helpers for AWS SDK v3",
   "author": "LimeWire Network (https://limewire.network)",
   "license": "LGPL-2.1",
@@ -38,7 +38,10 @@
     "typecheck": "tsc -p tsconfig.json",
     "build:types": "tsc -p tsconfig.build.json",
     "build:js": "tsc -p tsconfig.build.json --emitDeclarationOnly false --noEmit false --outDir ./dist",
-    "build": "rm -rf dist && npm run build:types && npm run build:js"
+    "build": "rm -rf dist && npm run build:types && npm run build:js",
+    "update-version": "printf \"export const version = '%s';\\n\" $(node -p \"require('./package.json').version\") > src/version.ts",
+    "version": "npm run update-version && git add src/version.ts",
+    "prebuild": "npm run update-version"
   },
   "dependencies": {
     "@noble/hashes": "^2.0.1",
